@@ -14,9 +14,14 @@ html {
 body {
 	min-width: 320px;
 	min-height: 100vh;
-	
+
 	font-family: Inter, system-ui, sans-serif;
 	color: white;
+	background-image:
+		linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+
+	background-size: 40px 40px;
 }
 
 a {
