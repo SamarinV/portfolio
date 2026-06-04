@@ -27,13 +27,15 @@
 	align-items: center;
 	flex-direction: column;
 	position: relative;
-	gap: 80px;
+	gap: 5em;
 }
 
 .title {
-	font-size: 80px;
+	font-size: 5em;
 	font-weight: 800;
 	display: flex;
+	align-items: center;
+	justify-content: center;
 	flex-wrap: wrap;
 	gap: 40px;
 }
@@ -86,13 +88,13 @@
 .monitor {
 	transform: rotate(-8deg);
 	perspective: 1000px;
-	animation: float 15s ease-in-out infinite;
+	animation: float 12s ease-in-out infinite;
 	transform-style: preserve-3d;
 }
 
 .screen {
-	width: 500px;
-	height: 320px;
+	width: 31.25em;
+	height: 25em;
 	position: relative;
 	background: #0a0a0a;
 	border-radius: 12px;
@@ -128,8 +130,8 @@
 }
 
 .stand {
-	width: 120px;
-	height: 20px;
+	width: 7.5em;
+	height: 1.25em;
 	background: #2a2a2a;
 	margin: 0 auto;
 	margin-top: 12px;
@@ -139,7 +141,7 @@
 .code {
 	color: #38bdf8;
 	font-family: var(--font-code);
-	font-size: 22px;
+	font-size: 1.375em;
 }
 
 .cursor {
@@ -148,15 +150,15 @@
 
 .photoWrapper {
 	position: absolute;
-	right: -180px;
-	bottom: 50px;
+	right: -7.5em;
+	bottom: 3.125em;
 	z-index: 2;
 }
 .photoWrapper::before {
 	content: '';
 	position: absolute;
-	width: 250px;
-	height: 250px;
+	width: 15.625em;
+	height: 15.625em;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
@@ -167,7 +169,7 @@
 }
 
 .photo {
-	width: 280px;
+	width: 17.5em;
 	border-radius: 20px;
 	filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.4));
 }
@@ -200,4 +202,13 @@
 	to {
 		transform: translateY(100%);
 	}
+}
+
+@media (max-width: 768px) {
+	// .title {
+	// 	font-size: 48px;
+	// }
+	// .monitor {
+	// 	width: 250px;
+	// }
 }

@@ -14,7 +14,7 @@ html {
 body {
 	min-width: 320px;
 	min-height: 100vh;
-
+	font-size: 16px;
 	font-family: Inter, system-ui, sans-serif;
 	color: white;
 	background-image:
@@ -51,4 +51,10 @@ section {
 
 #root {
 	min-height: 100vh;
+}
+
+@media (max-width: 768px) {
+	body {
+		font-size: 0.5em;
+	}
 }

@@ -5,6 +5,7 @@ import { useRef } from 'react'
 import myPhoto from '../../assets/me.webp'
 import s from './Hero.module.scss'
 import { useAnimatedLetters } from '../../hooks/useAnimatedLetters'
+import { useTypewriter } from '../../hooks/useTypewriter'
 
 gsap.registerPlugin(SplitText)
 
@@ -16,7 +17,16 @@ export default function Hero() {
 		white: s.white,
 		purple: s.purple,
 	})
-
+	const typedText = useTypewriter(`name: "Владимир",
+role: "Frontend Developer",
+stack: [
+  "React",
+  "TypeScript",
+  "Redux Toolkit",
+  "SCSS",
+  "Vite"
+],
+openToWork: true`, 40)
 	return (
 		<section className={s.hero} id="home">
 			<div className={s.content}>
@@ -28,16 +38,7 @@ export default function Hero() {
 					<div className={s.monitor}>
 						<div className={s.screen}>
 							<pre className={s.code}>
-								{`name: "Владимир",
-role: "Frontend Developer",
-stack: [
-  "React",
-  "TypeScript",
-  "Redux Toolkit",
-  "SCSS",
-  "Vite"
-],
-openToWork: true`}
+								{typedText}
 							</pre>
 						</div>
 
