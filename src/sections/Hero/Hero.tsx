@@ -39,6 +39,7 @@ openToWork: true`, 40)
 						<div className={s.screen}>
 							<pre className={s.code}>
 								{typedText}
+								<span className={s.cursor}>|</span>
 							</pre>
 						</div>
 

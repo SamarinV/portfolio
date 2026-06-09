@@ -1,21 +1,21 @@
-import Header from './components/Header/Header'
-
-import Hero from './sections/Hero/Hero'
+import Background from './components/Background/Background'
+import NavigationBar from './components/NavigationBar/NavigationBar'
 import About from './sections/About/About'
-import Projects from './sections/Projects/Projects'
-import Skills from './sections/Scills/Scills'
 import Contacts from './sections/Contacts/Contacts'
+import Footer from './sections/Footer/Footer'
+import Hero from './sections/Hero/Hero'
+import Projects from './sections/Projects/Projects'
 
 function App() {
 	return (
 		<>
-			<Header />
-
+			<Background />
 			<Hero />
+			<NavigationBar />
 			<About />
-			<Skills />
 			<Projects />
 			<Contacts />
+			<Footer />
 		</>
 	)
 }

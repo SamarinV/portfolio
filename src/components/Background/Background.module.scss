@@ -1,0 +1,27 @@
+.particles-bg {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.dot {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+}
+.smallDot {
+  width: 1px;
+  height: 1px;
+}
+.red {
+  background: #ff4d4d;
+  box-shadow: 0 0 10px #ff4d4d;
+}
+
+.blue {
+  background: #4da6ff;
+  box-shadow: 0 0 10px #4da6ff;
+}

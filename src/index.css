@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap');
 *,
 *::before,
 *::after {
@@ -9,19 +10,19 @@
 html {
 	scroll-behavior: smooth;
 	background-color: var(--bg-color);
+	font-family: 'Montserrat', sans-serif;
+	font-size: 16px;
 }
 
 body {
 	min-width: 320px;
 	min-height: 100vh;
-	font-size: 16px;
-	font-family: Inter, system-ui, sans-serif;
 	color: white;
-	background-image:
+	/* background-image:
 		linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
 		linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
 
-	background-size: 40px 40px;
+	background-size: 40px 40px; */
 }
 
 a {
@@ -47,14 +48,19 @@ img {
 
 section {
 	padding: 100px 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0 auto;
 }
 
 #root {
 	min-height: 100vh;
 }
 
-@media (max-width: 768px) {
-	body {
-		font-size: 0.5em;
+
+@media (max-width: 1500px) {
+	html {
+		font-size: 0.875em;
 	}
 }
