@@ -3,6 +3,7 @@
 	font-weight: 600;
 	width: fit-content;
 	position: relative;
+	cursor: default;
 	&::before {
 		content: '';
 		position: absolute;

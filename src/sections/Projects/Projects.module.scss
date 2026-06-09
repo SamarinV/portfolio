@@ -1,3 +1,92 @@
 .projects {
-	height: 100vh;
+	min-height: 100vh;
+}
+.list {
+	display: flex;
+	flex-direction: column;
+	gap: 10em;
+}
+
+.project {
+	display: flex;
+	gap: 2em;
+	align-self: flex-start;
+	margin-top: 40px;
+	z-index: 10;
+}
+.imageWrapper {
+	width: 70%;
+	padding: 60px 80px 60px 0;
+	background: #3216bb;
+	transition: all 0.5s ease;
+	cursor: pointer;
+	&:hover {
+		transform: scale(0.9);
+	}
+}
+.image {
+	width: 100%;
+}
+
+.content {
+	position: relative;
+	top: 6em;
+	left: -6em;
+	height: fit-content;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5em;
+}
+.reverse {
+	flex-direction: row-reverse;
+	.imageWrapper {
+		padding-left: 80px;
+		padding-right: 0;
+	}
+	.content {
+		left: 6em;
+		right: -6em;
+	}
+}
+
+.title {
+	font-size: 1.6em;
+	font-weight: 700;
+}
+.description {
+	font-size: 1em;
+	font-weight: 400;
+}
+.link {
+	font-size: 1rem;
+	font-weight: 700;
+	letter-spacing: 3px;
+	line-height: 1;
+	text-transform: uppercase;
+	width: fit-content;
+	position: relative;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 3px 6px;
+	z-index: 100;
+	&:hover {
+		color: #1a1a1a;
+	}
+	&::after {
+		position: absolute;
+		content: '';
+		height: 2px;
+		background-color: var(--bg-color-red);
+		width: 100%;
+		bottom: 1px;
+		display: block;
+		transform-origin: bottom;
+		transition: all 0.25s;
+		z-index: -1;
+	}
+}
+.link:hover::after {
+	height: 100%;
 }
