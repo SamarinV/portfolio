@@ -88,3 +88,13 @@
 .link:hover::after {
 	height: 100%;
 }
+@media (max-width: 1300px) {
+	.projects {
+		min-height: 100vh;
+	}
+	.list {
+		display: flex;
+		flex-direction: column;
+		gap: 10em;
+	}
+}
