@@ -15,14 +15,12 @@
 		z-index: -1;
 	}
 }
-
 .char {
 	display: inline-block;
 	height: 1.3em;
 	overflow: hidden;
 	vertical-align: top;
 }
-
 .roller {
 	display: flex;
 	flex-direction: column;
@@ -30,7 +28,6 @@
 	will-change: transform;
 	transform: translateY(0%);
 }
-
 .white,
 .purple {
 	display: block;
@@ -38,14 +35,11 @@
 	height: 1.3em;
 	line-height: 1.3em;
 }
-
 .white {
 	color: #fff;
 }
-
 .purple {
 	color: transparent;
-
 	background: repeating-linear-gradient(
 		45deg,
 		#a855f7 0px,
@@ -53,7 +47,6 @@
 		#d1d5db 6px,
 		#d1d5db 12px
 	);
-
 	background-clip: text;
 	-webkit-background-clip: text;
 }

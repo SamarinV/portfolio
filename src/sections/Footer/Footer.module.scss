@@ -8,18 +8,15 @@
 	background-color: var(--bg-color-light);
 	position: relative;
 }
-
 .btns {
 	display: flex;
 	gap: 12px;
 }
-
 .btn {
 	border-radius: 50%;
 	text-decoration: none;
 	transition: 0.3s;
 }
-
 .btn:hover {
 	transform: scale(1.1);
 }
@@ -36,12 +33,10 @@
 		animation: float 1.5s ease-in-out infinite;
 	}
 }
-
 .toTopIcon {
 	width: 30px;
 	height: 30px;
 }
-
 @keyframes float {
 	0% {
 		transform: translateY(0);

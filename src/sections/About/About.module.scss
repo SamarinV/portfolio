@@ -1,6 +1,5 @@
 .about {
 	min-height: 100vh;
-	// background-color: var(--bg-color-about);
 	width: 1300px;
 	padding: 100px;
 	display: flex;
@@ -9,19 +8,16 @@
 	gap: 60px;
 	margin: 0 auto;
 }
-
 .content {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 12em;
 }
-
 .profile {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
-
 .profileImage {
 	background: linear-gradient(45deg, #ff4d5a, #4da6ff);
 	-webkit-mask: url('../../assets/profile.svg') no-repeat center;
@@ -29,13 +25,11 @@
 	width: 160px;
 	height: 200px;
 }
-
 .text {
 	font-size: 1.2em;
 	line-height: 1.6;
 	color: var(--text-color);
 }
-
 .skills {
 	font-size: 0.8em;
 	font-weight: bold;
@@ -70,7 +64,6 @@
 		padding: 2px;
 		border-radius: inherit;
 		background: linear-gradient(45deg, #ff4d5a, #4da6ff);
-
 		-webkit-mask:
 			linear-gradient(#000 0 0) content-box,
 			linear-gradient(#000 0 0);
@@ -84,7 +77,6 @@
 	width: 40px;
 	height: 40px;
 }
-
 @media (max-width: 1500px) {
 	.content {
 		gap: 6em;
@@ -101,6 +93,6 @@
 		width: 500px;
 	}
 	.skills {
-	width: 500px;
-}
+		width: 500px;
+	}
 }

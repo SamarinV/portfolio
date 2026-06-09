@@ -3,9 +3,9 @@ import { SplitText } from 'gsap/SplitText'
 import { useRef } from 'react'
 
 import myPhoto from '../../assets/me.webp'
-import s from './Hero.module.scss'
 import { useAnimatedLetters } from '../../hooks/useAnimatedLetters'
 import { useTypewriter } from '../../hooks/useTypewriter'
+import s from './Hero.module.scss'
 
 gsap.registerPlugin(SplitText)
 
@@ -19,7 +19,8 @@ export default function Hero() {
 		auto: true,
 		splitType: 'chars',
 	})
-	const typedText = useTypewriter(`name: "Владимир",
+	const typedText = useTypewriter(
+		`name: "Владимир",
 role: "Frontend Developer",
 stack: [
   "React",
@@ -28,7 +29,9 @@ stack: [
   "SCSS",
   "Vite"
 ],
-openToWork: true`, 40)
+openToWork: true`,
+		40,
+	)
 	return (
 		<section className={s.hero} id="hero">
 			<div className={s.content}>

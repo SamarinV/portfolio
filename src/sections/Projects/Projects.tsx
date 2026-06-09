@@ -1,11 +1,10 @@
-import AnimatedSection from '../../components/AnimatedSection/AnimatedSection'
-import Title from '../../components/Title/Title'
-
 import filmFinder from '../../assets/projects/filmFinder.webp'
 import friendlily from '../../assets/projects/friendlily.webp'
 import landscapeDesign from '../../assets/projects/landscapeDesign.webp'
-import taskBloom from '../../assets/projects/taskBloom.webp'
 import spaceGame from '../../assets/projects/spaceGame.webp'
+import taskBloom from '../../assets/projects/taskBloom.webp'
+import AnimatedSection from '../../components/AnimatedSection/AnimatedSection'
+import Title from '../../components/Title/Title'
 
 import s from './Projects.module.scss'
 
@@ -60,7 +59,6 @@ const Projects = () => {
 				<div className={s.list}>
 					{projects.map((project, index) => (
 						<div key={project.id} className={`${s.project} ${index % 2 ? s.reverse : ''}`}>
-
 							<a href={project.link} target="_blank" className={s.imageWrapper}>
 								<img src={project.image} className={s.image} alt={project.title} />
 							</a>
@@ -68,8 +66,12 @@ const Projects = () => {
 							<div className={s.content}>
 								<h3 className={s.title}>{project.title}</h3>
 								<p className={s.description}>{project.description}</p>
-								<a href={project.link} target="_blank" className={s.link}>Посмотреть</a>
-								<a href={project.github} target="_blank" className={s.link}>Открыть GitHub</a>
+								<a href={project.link} target="_blank" className={s.link}>
+									Посмотреть
+								</a>
+								<a href={project.github} target="_blank" className={s.link}>
+									Открыть GitHub
+								</a>
 							</div>
 						</div>
 					))}
