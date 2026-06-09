@@ -69,16 +69,25 @@
 .purple {
 	color: transparent;
 
-	background: repeating-linear-gradient(
-		45deg,
-		#a855f7 0px,
-		#a855f7 6px,
-		#d1d5db 6px,
-		#d1d5db 12px
-	);
+	background:
+		linear-gradient(
+			90deg,
+			#7e22ce 0%,
+			#a855f7 25%,
+			#c084fc 60%,
+			#e9d5ff 100%
+		);
 
-	background-clip: text;
+	background-size: 200% 100%;
+
+	filter: contrast(1.2);
+
 	-webkit-background-clip: text;
+	background-clip: text;
+
+	text-shadow:
+		0 0 1px rgba(168, 85, 247, 0.3),
+		0 0 2px rgba(168, 85, 247, 0.2);
 }
 
 .monitorWrapper {

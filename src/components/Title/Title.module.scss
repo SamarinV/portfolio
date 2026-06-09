@@ -6,11 +6,53 @@
 	&::before {
 		content: '';
 		position: absolute;
-		border-bottom: 18px solid #ff4d5a;
+		border-bottom: 18px solid var(--bg-color-red);
 		width: 100%;
 		display: block;
 		left: 0.5em;
 		top: 0.7em;
 		z-index: -1;
 	}
+}
+
+.char {
+	display: inline-block;
+	height: 1.3em;
+	overflow: hidden;
+	vertical-align: top;
+}
+
+.roller {
+	display: flex;
+	flex-direction: column;
+
+	will-change: transform;
+	transform: translateY(0%);
+}
+
+.white,
+.purple {
+	display: block;
+
+	height: 1.3em;
+	line-height: 1.3em;
+}
+
+.white {
+	color: #fff;
+}
+
+.purple {
+	color: transparent;
+
+	background: repeating-linear-gradient(
+		45deg,
+		#a855f7 0px,
+		#a855f7 6px,
+		#d1d5db 6px,
+		#d1d5db 12px
+	);
+
+	background-clip: text;
+	-webkit-background-clip: text;
 }

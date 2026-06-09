@@ -5,14 +5,17 @@ import type { RefObject } from 'react'
 
 gsap.registerPlugin(SplitText)
 
-type Classes = {
+type Props = {
 	char: string
 	roller: string
-	white: string
-	purple: string
+	mainColor: string
+	anotherColor: string
+	auto: boolean
+	splitType: 'chars' | 'words'
+
 }
 
-export function useAnimatedLetters(ref: RefObject<HTMLElement | null>, classes: Classes) {
+export function useAnimatedLetters(ref: RefObject<HTMLElement | null>, props: Props) {
 	useGSAP(
 		() => {
 			if (!ref.current) return
@@ -21,24 +24,24 @@ export function useAnimatedLetters(ref: RefObject<HTMLElement | null>, classes: 
 				type: 'chars words',
 				charClass: 'char',
 			})
-
+const items = split[props.splitType]
 			// build letters
-			split.chars.forEach((char) => {
-				const letter = char.textContent || ''
+			items.forEach((item) => {
+				const letter = item.textContent || ''
 
 				if (!letter.trim()) return
 
-				char.classList.add(classes.char)
+				item.classList.add(props.char)
 
-				char.innerHTML = `
-					<div class="${classes.roller}">
-						<span class="${classes.white}">${letter}</span>
-						<span class="${classes.purple}">${letter}</span>
+				item.innerHTML = `
+					<div class="${props.roller}">
+						<span class="${props.mainColor}">${letter}</span>
+						<span class="${props.anotherColor}">${letter}</span>
 					</div>
 				`
 
-				const el = char as HTMLElement
-				const roller = el.querySelector(`.${classes.roller}`) as HTMLElement | null
+				const el = item as HTMLElement
+				const roller = el.querySelector(`.${props.roller}`) as HTMLElement | null
 
 				if (!roller) return
 
@@ -54,7 +57,7 @@ export function useAnimatedLetters(ref: RefObject<HTMLElement | null>, classes: 
 
 					gsap.to(roller, {
 						yPercent: -50,
-						duration: 0.3,
+						duration: 0.5,
 						ease: 'power2.out',
 					})
 
@@ -63,7 +66,7 @@ export function useAnimatedLetters(ref: RefObject<HTMLElement | null>, classes: 
 					timeout = window.setTimeout(() => {
 						gsap.to(roller, {
 							yPercent: 0,
-							duration: 0.3,
+							duration: 0.5,
 							ease: 'power2.inOut',
 						})
 
@@ -76,7 +79,7 @@ export function useAnimatedLetters(ref: RefObject<HTMLElement | null>, classes: 
 
 					gsap.to(roller, {
 						yPercent: 0,
-						duration: 0.3,
+						duration: 0.5,
 						ease: 'power2.inOut',
 					})
 				})
@@ -99,35 +102,38 @@ export function useAnimatedLetters(ref: RefObject<HTMLElement | null>, classes: 
 			// =========================
 			// RANDOM ANIMATION LOOP
 			// =========================
-			const toggleChar = (char: HTMLElement) => {
-				if (char.dataset.hovering === 'true') return
+			const toggleChar = (item: HTMLElement) => {
+				if (item.dataset.hovering === 'true') return
 
-				const roller = char.querySelector(`.${classes.roller}`) as HTMLElement | null
+				const roller = item.querySelector(`.${props.roller}`) as HTMLElement | null
 
 				if (!roller) return
 
-				const active = char.dataset.active === 'true'
+				const active = item.dataset.active === 'true'
 
 				gsap.to(roller, {
 					yPercent: active ? 0 : -50,
-					duration: 0.35,
+					duration: 0.5,
 					ease: 'power2.inOut',
 				})
 
-				char.dataset.active = String(!active)
+				item.dataset.active = String(!active)
 			}
 
-			const interval = setInterval(() => {
-				const chars = split.chars.filter((char) => char.textContent?.trim())
 
-				const shuffled = [...chars].sort(() => Math.random() - 0.5)
+				const interval = setInterval(() => {
+					if(!props.auto) return
+					const chars = split.chars.filter((item) => item.textContent?.trim())
+	
+					const shuffled = [...chars].sort(() => Math.random() - 0.5)
+	
+					const count = Math.random() > 0.5 ? 2 : 1
+	
+					shuffled.slice(0, count).forEach((char) => {
+						toggleChar(char as HTMLElement)
+					})
+				}, 800)
 
-				const count = Math.random() > 0.5 ? 2 : 1
-
-				shuffled.slice(0, count).forEach((char) => {
-					toggleChar(char as HTMLElement)
-				})
-			}, 800)
 
 			return () => {
 				clearInterval(interval)

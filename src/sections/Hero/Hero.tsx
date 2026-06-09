@@ -14,8 +14,10 @@ export default function Hero() {
 	useAnimatedLetters(textRef, {
 		char: s.char,
 		roller: s.roller,
-		white: s.white,
-		purple: s.purple,
+		mainColor: s.white,
+		anotherColor: s.purple,
+		auto: true,
+		splitType: 'chars',
 	})
 	const typedText = useTypewriter(`name: "Владимир",
 role: "Frontend Developer",
@@ -28,7 +30,7 @@ stack: [
 ],
 openToWork: true`, 40)
 	return (
-		<section className={s.hero} id="home">
+		<section className={s.hero} id="hero">
 			<div className={s.content}>
 				<h1 ref={textRef} className={s.title}>
 					Frontend Developer

@@ -4,8 +4,9 @@
 	justify-content: center;
 	flex-direction: column;
 	gap: 1.5em;
-	height: 10em;
+	height: 15em;
 	background-color: var(--bg-color-light);
+	position: relative;
 }
 
 .btns {
@@ -26,4 +27,29 @@
 	width: 50px;
 	height: 50px;
 	color: white;
+}
+.toHero {
+	position: absolute;
+	top: -20px;
+	background-color: var(--bg-color-red);
+	&:hover {
+		animation: float 1.5s ease-in-out infinite;
+	}
+}
+
+.toTopIcon {
+	width: 30px;
+	height: 30px;
+}
+
+@keyframes float {
+	0% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-5px);
+	}
+	100% {
+		transform: translateY(0);
+	}
 }

@@ -1,10 +1,14 @@
 import GitHubIcon from '../../assets/social/github.svg?react'
 import TelegramIcon from '../../assets/social/telegram.svg?react'
+import ToTopIcon from '../../assets/toTop.svg?react'
 import s from './Footer.module.scss'
 
 const Footer = () => {
 	return (
 		<footer className={s.footer}>
+			<a href={`#hero`} className={s.toHero}>
+				<ToTopIcon className={s.toTopIcon} />
+			</a>
 			<div className={s.btns}>
 				<a href="https://github.com/SamarinV" target="_blank" rel="noopener noreferrer" className={s.btn}>
 					<GitHubIcon className={s.icon} />

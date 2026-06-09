@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import s from './NavigationBar.module.scss'
 
-const sections = ['home', 'about', 'projects', 'contacts']
+const sections = ['hero', 'about', 'projects', 'contacts']
 
 export default function NavigationBar() {
 	const [activeSection, setActiveSection] = useState('home')
@@ -36,7 +36,7 @@ export default function NavigationBar() {
 						<a href={`#${section}`} className={activeSection === section ? s.active : ''}>
 							{
 								{
-									home: 'Главная',
+									hero: 'Главная',
 									about: 'Обо мне',
 									projects: 'Проекты',
 									contacts: 'Контакты',
