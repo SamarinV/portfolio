@@ -31,6 +31,7 @@ export default function About() {
 							</p>
 						</div>
 					</div>
+					
 					<div className={s.skills}>
 						<div className={s.col}>
 							<div className={s.skillItem}>
@@ -79,6 +80,7 @@ export default function About() {
 							</div>
 						</div>
 					</div>
+
 				</div>
 			</section>
 		</AnimatedSection>

@@ -71,17 +71,20 @@
 		0 0 2px rgba(168, 85, 247, 0.2);
 }
 .monitorWrapper {
+	width: 31.25em;
 	position: relative;
 	z-index: 1;
 }
 .monitor {
 	transform: rotate(-8deg);
 	perspective: 1000px;
+		width: 100%;
+	height: 100%;
 	animation: float 12s ease-in-out infinite;
 	transform-style: preserve-3d;
 }
 .screen {
-	width: 31.25em;
+	// width: 31.25em;
 	height: 25em;
 	position: relative;
 	background: #0a0a0a;
@@ -140,19 +143,19 @@
 	bottom: 3.125em;
 	z-index: 2;
 }
-.photoWrapper::before {
-	content: '';
-	position: absolute;
-	width: 15.625em;
-	height: 15.625em;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	border-radius: 50%;
-	background: radial-gradient(circle, rgba(168, 85, 247, 0.35), rgba(236, 72, 153, 0.15), transparent);
-	filter: blur(60px);
-	z-index: 0;
-}
+// .photoWrapper::before {
+// 	content: '';
+// 	position: absolute;
+// 	width: 15.625em;
+// 	height: 15.625em;
+// 	top: 50%;
+// 	left: 50%;
+// 	transform: translate(-50%, -50%);
+// 	border-radius: 50%;
+// 	background: radial-gradient(circle, rgba(168, 85, 247, 0.35), rgba(236, 72, 153, 0.15), transparent);
+// 	filter: blur(60px);
+// 	z-index: 0;
+// }
 
 .photo {
 	width: 17.5em;
@@ -187,5 +190,47 @@
 
 	to {
 		transform: translateY(100%);
+	}
+}
+@media (max-width: 768px) {
+	.title {
+		font-size: 4.5em;
+	}
+	.monitorWrapper {
+		width: 28em;
+	}
+	.screen {
+		height: 16em;
+	}
+	.code {
+		font-size: 1em;
+	}
+	.photoWrapper {
+		right: -4em;
+	}
+	.photo {
+		width: 12em;
+	}
+}
+
+@media (max-width: 510px) {
+	.title {
+		font-size: 4em;
+	}
+	.monitorWrapper {
+		width: 300px;
+	}
+	.screen {
+		height: 16em;
+	}
+	.code {
+		font-size: 1em;
+	}
+	.photoWrapper {
+		right: -2em;
+		bottom: 2.5em;
+	}
+	.photo {
+		width: 10em;
 	}
 }

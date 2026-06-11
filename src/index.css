@@ -64,3 +64,9 @@ section {
 		font-size: 0.875em;
 	}
 }
+
+@media (max-width: 768px) {
+	section {
+		padding: 60px 0;
+	}
+}

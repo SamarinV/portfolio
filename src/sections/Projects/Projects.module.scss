@@ -8,14 +8,14 @@
 }
 
 .project {
-	display: flex;
-	gap: 2em;
-	align-self: flex-start;
 	margin-top: 40px;
 	z-index: 10;
+	display: flex;
+	align-self: flex-start;
+	align-items: center;
 }
 .imageWrapper {
-	width: 70%;
+
 	padding: 60px 80px 60px 0;
 	background: #3216bb;
 	transition: all 0.5s ease;
@@ -28,9 +28,12 @@
 	width: 100%;
 }
 .content {
+	width: 40%;
 	position: relative;
-	top: 6em;
-	left: -6em;
+	padding: 6px 3px;
+	border-radius: 4px;
+	// top: 6em;
+	left: -5em;
 	height: fit-content;
 	display: flex;
 	flex-direction: column;
@@ -43,8 +46,7 @@
 		padding-right: 0;
 	}
 	.content {
-		left: 6em;
-		right: -6em;
+		left: 5em;
 	}
 }
 .title {
@@ -96,5 +98,40 @@
 		display: flex;
 		flex-direction: column;
 		gap: 10em;
+	}
+}
+
+@media (max-width: 768px) {
+	.content {
+		// top: 3em;
+	}
+}
+
+@media (max-width: 600px) {
+	.imageWrapper {
+		padding: 40px 30px 40px 0;
+	}
+	.reverse {
+		.imageWrapper {
+			padding: 40px 0 40px 30px;
+			padding-right: 0;
+		}
+		.content {
+			left: 2.5em;
+		}
+	}
+	.content {
+		// top: 2em;
+		left: -2.5em;
+		background: #171718b7;
+	}
+	.title {
+		font-size: 1.2em;
+	}
+	.description {
+		font-size: 0.8em;
+	}
+	.link {
+		font-size: 0.8em;
 	}
 }

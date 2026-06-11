@@ -59,13 +59,18 @@ const Projects = () => {
 				<div className={s.list}>
 					{projects.map((project, index) => (
 						<div key={project.id} className={`${s.project} ${index % 2 ? s.reverse : ''}`}>
-							<a href={project.link} target="_blank" className={s.imageWrapper}>
+							<a href={project.link} target="_blank">
+								<div  className={s.imageWrapper}>
 								<img src={project.image} className={s.image} alt={project.title} />
+
+								</div>
 							</a>
 
 							<div className={s.content}>
 								<h3 className={s.title}>{project.title}</h3>
-								<p className={s.description}>{project.description}</p>
+								<p className={s.description}>
+									{project.description}
+								</p>
 								<a href={project.link} target="_blank" className={s.link}>
 									Посмотреть
 								</a>
