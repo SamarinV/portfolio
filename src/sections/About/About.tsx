@@ -1,3 +1,7 @@
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useRef } from 'react'
 import CSSIcon from '../../assets/scills/css.svg?react'
 import FigmaIcon from '../../assets/scills/figma.svg?react'
 import GitIcon from '../../assets/scills/git.svg?react'
@@ -12,12 +16,66 @@ import AnimatedSection from '../../components/AnimatedSection/AnimatedSection'
 import Title from '../../components/Title/Title'
 import s from './About.module.scss'
 
+gsap.registerPlugin(ScrollTrigger)
+
 export default function About() {
+	const textRef = useRef<HTMLParagraphElement>(null)
+	const skillsRef = useRef<HTMLDivElement>(null)
+	useGSAP(() => {
+		if (!textRef.current) return
+
+		gsap.fromTo(
+			textRef.current,
+			{
+				x: -200,
+				opacity: 0,
+			},
+			{
+				x: 0,
+				opacity: 1,
+				duration: 1,
+				ease: 'power3.out',
+
+				scrollTrigger: {
+					trigger: textRef.current,
+					start: 'top 80%',
+
+					toggleActions: 'play reverse play reverse',
+				},
+			},
+		)
+	})
+
+	useGSAP(() => {
+		if (!skillsRef.current) return
+
+		const items = skillsRef.current.querySelectorAll(`.${s.skillItem}`)
+
+		gsap.fromTo(
+			items,
+			{
+				x: 100,
+				opacity: 0,
+			},
+			{
+				x: 0,
+				opacity: 1,
+				duration: 0.8,
+				stagger: 0.08,
+
+				scrollTrigger: {
+					trigger: skillsRef.current,
+					start: 'top 75%',
+					toggleActions: 'play reverse play reverse',
+				},
+			},
+		)
+	})
 	return (
 		<AnimatedSection>
 			<section id="about" className={s.about}>
 				<Title title="Обо мне" />
-				<div className={s.content}>
+				<div ref={textRef} className={s.content}>
 					<div className={s.profile}>
 						<div className={s.profile}>
 							<div className={s.profileImage}></div>
@@ -31,8 +89,8 @@ export default function About() {
 							</p>
 						</div>
 					</div>
-					
-					<div className={s.skills}>
+
+					<div ref={skillsRef} className={s.skills}>
 						<div className={s.col}>
 							<div className={s.skillItem}>
 								<HTMLIcon className={s.icon} />
@@ -80,7 +138,6 @@ export default function About() {
 							</div>
 						</div>
 					</div>
-
 				</div>
 			</section>
 		</AnimatedSection>
