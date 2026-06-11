@@ -11,6 +11,7 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 12em;
+	overflow: hidden;
 }
 .profile {
 	display: flex;

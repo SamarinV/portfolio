@@ -21,13 +21,14 @@ gsap.registerPlugin(ScrollTrigger)
 export default function About() {
 	const textRef = useRef<HTMLParagraphElement>(null)
 	const skillsRef = useRef<HTMLDivElement>(null)
+
 	useGSAP(() => {
-		if (!textRef.current) return
+		if (!skillsRef.current) return
 
 		gsap.fromTo(
 			textRef.current,
 			{
-				x: -200,
+				x: 200,
 				opacity: 0,
 			},
 			{
@@ -48,9 +49,7 @@ export default function About() {
 
 	useGSAP(() => {
 		if (!skillsRef.current) return
-
 		const items = skillsRef.current.querySelectorAll(`.${s.skillItem}`)
-
 		gsap.fromTo(
 			items,
 			{
@@ -61,7 +60,7 @@ export default function About() {
 				x: 0,
 				opacity: 1,
 				duration: 0.8,
-				stagger: 0.08,
+				stagger: 0.12,
 
 				scrollTrigger: {
 					trigger: skillsRef.current,
@@ -75,8 +74,8 @@ export default function About() {
 		<AnimatedSection>
 			<section id="about" className={s.about}>
 				<Title title="Обо мне" />
-				<div ref={textRef} className={s.content}>
-					<div className={s.profile}>
+				<div className={s.content}>
+					<div ref={textRef} className={s.profile}>
 						<div className={s.profile}>
 							<div className={s.profileImage}></div>
 							<p className={s.text}>
