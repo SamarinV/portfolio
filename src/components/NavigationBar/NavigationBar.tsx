@@ -16,7 +16,7 @@ export default function NavigationBar() {
 				})
 			},
 			{
-				threshold: 0.5,
+				threshold: 0.1,
 			},
 		)
 
