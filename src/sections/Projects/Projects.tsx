@@ -5,6 +5,12 @@ import spaceGame from '../../assets/projects/spaceGame.webp'
 import taskBloom from '../../assets/projects/taskBloom.webp'
 import AnimatedSection from '../../components/AnimatedSection/AnimatedSection'
 import Title from '../../components/Title/Title'
+import { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 import s from './Projects.module.scss'
 
@@ -52,11 +58,66 @@ const projects = [
 ]
 
 const Projects = () => {
+	const listRef = useRef<HTMLDivElement>(null)
+	useGSAP(() => {
+	if (!listRef.current) return
+
+	const projects = gsap.utils.toArray<HTMLElement>(
+		listRef.current.querySelectorAll(`.${s.project}`)
+	)
+
+	projects.forEach((project) => {
+		const image = project.querySelector(`.${s.imageWrapper}`)
+		const content = project.querySelector(`.${s.content}`)
+
+		if (!image || !content) return
+
+		const reversed = project.classList.contains(s.reverse)
+
+		gsap.fromTo(
+			image,
+			{
+				x: reversed ? 200 : -200,
+				opacity: 0,
+			},
+			{
+				x: 0,
+				opacity: 1,
+				duration: 0.8,
+				ease: 'power3.out',
+				scrollTrigger: {
+					trigger: project,
+					start: 'top 80%',
+					toggleActions: 'play reverse play reverse',
+				},
+			}
+		)
+
+		gsap.fromTo(
+			content,
+			{
+				x: reversed ? -200 : 200,
+				opacity: 0,
+			},
+			{
+				x: 0,
+				opacity: 1,
+				duration: 0.8,
+				ease: 'power3.out',
+				scrollTrigger: {
+					trigger: project,
+					start: 'top 80%',
+					toggleActions: 'play reverse play reverse',
+				},
+			}
+		)
+	})
+}, [])
 	return (
 		<AnimatedSection>
 			<section className={s.projects} id="projects">
 				<Title title="Проекты" />
-				<div className={s.list}>
+				<div ref={listRef} className={s.list}>
 					{projects.map((project, index) => (
 						<div key={project.id} className={`${s.project} ${index % 2 ? s.reverse : ''}`}>
 							<a href={project.link} target="_blank">
