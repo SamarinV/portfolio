@@ -75,14 +75,15 @@ const Projects = () => {
 			gsap.fromTo(
 				image,
 				{
-					x: reversed ? 200 : -200,
+					x: reversed ? 240 : -240,
 					opacity: 0,
 				},
 				{
 					x: 0,
 					opacity: 1,
 					duration: 0.8,
-					ease: 'power3.out',
+					ease: 'linear',
+					clearProps: 'transform',
 					scrollTrigger: {
 						trigger: project,
 						start: 'top 80%',
@@ -101,7 +102,8 @@ const Projects = () => {
 					x: 0,
 					opacity: 1,
 					duration: 0.8,
-					ease: 'power3.out',
+					ease: 'linear',
+					clearProps: 'transform',
 					scrollTrigger: {
 						trigger: project,
 						start: 'top 80%',
