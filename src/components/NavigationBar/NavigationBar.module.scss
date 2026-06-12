@@ -22,10 +22,19 @@
 	color: #fff;
 	cursor: pointer;
 	transition: all 0.4s ease;
-	&:hover {
-		color: #ff4d5a;
-	}
 }
+
+.link {
+	color: #fff;
+	text-decoration: none;
+}
+
 .active {
 	color: #ff4d5a;
+}
+
+@media (hover: hover) {
+	.link:hover {
+		color: #ff4d5a;
+	}
 }

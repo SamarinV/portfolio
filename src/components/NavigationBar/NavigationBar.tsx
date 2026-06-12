@@ -33,7 +33,10 @@ export default function NavigationBar() {
 			<ul className={s.navList}>
 				{sections.map((section) => (
 					<li className={s.navItem} key={section}>
-						<a href={`#${section}`} className={activeSection === section ? s.active : ''}>
+						<a
+							href={`#${section}`}
+							className={`${s.link} ${activeSection === section ? s.active : ''}`}
+						>
 							{
 								{
 									hero: 'Главная',
