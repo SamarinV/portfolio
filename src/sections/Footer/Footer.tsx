@@ -18,7 +18,12 @@ const Footer = () => {
 				<a href="https://t.me/vova_samar" target="_blank" rel="noopener noreferrer" className={s.btn}>
 					<TelegramIcon className={s.icon} />
 				</a>
-				<a href="https://vk.com/samarinva" target="_blank" rel="noopener noreferrer" className={s.btn}>
+				<a
+					href="https://m.vk.com/samarinva"
+					target="_blank"
+					rel="noopener noreferrer"
+					className={s.btn}
+				>
 					<VkIcon className={s.icon} />
 				</a>
 			</div>
