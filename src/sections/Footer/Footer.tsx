@@ -5,16 +5,6 @@ import ToTopIcon from '../../assets/toTop.svg?react'
 import s from './Footer.module.scss'
 
 const Footer = () => {
-	const openVK = () => {
-		const appLink = 'vk://vk.com/samarinva'
-		const webLink = 'https://vk.com/samarinva'
-
-		window.location.href = appLink
-
-		setTimeout(() => {
-			window.open(webLink, '_blank')
-		}, 700)
-	}
 	return (
 		<footer className={s.footer}>
 			<a href={`#hero`} className={s.toHero}>
@@ -30,10 +20,6 @@ const Footer = () => {
 				</a>
 				<a
 					href="https://m.vk.com/samarinva"
-					onClick={(e) => {
-						e.preventDefault()
-						openVK()
-					}}
 					target="_blank"
 					rel="noopener noreferrer"
 					className={s.btn}
