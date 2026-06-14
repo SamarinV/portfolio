@@ -19,7 +19,7 @@ const Footer = () => {
 					<TelegramIcon className={s.icon} />
 				</a>
 				<a
-					href="https://m.vk.com/samarinva"
+					href="https://vk.com/samarinva"
 					target="_blank"
 					rel="noopener noreferrer"
 					className={s.btn}
