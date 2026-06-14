@@ -1,51 +1,54 @@
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useRef } from 'react'
 import AnimatedSection from '../../components/AnimatedSection/AnimatedSection'
 import SkillsPhysics from '../../components/SkillsPhysics/SkillsPhysics'
 import Title from '../../components/Title/Title'
+import SplitText from 'gsap/SplitText'
 import s from './About.module.scss'
 
-gsap.registerPlugin(ScrollTrigger)
+// gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(SplitText)
 
 export default function About() {
 	const textRef = useRef<HTMLParagraphElement>(null)
 
-	useGSAP(() => {
-		if (!textRef.current) return
+useGSAP(() => {
+	if (!textRef.current) return
 
-		gsap.fromTo(
-			textRef.current,
-			{
-				x: 200,
-				opacity: 0,
-			},
-			{
-				x: 0,
-				opacity: 1,
-				duration: 1,
-				ease: 'power3.out',
-
-				scrollTrigger: {
-					trigger: textRef.current,
-					start: 'top 80%',
-
-					toggleActions: 'play reverse play reverse',
-				},
-			},
-		)
+	const split = new SplitText(textRef.current, {
+		type: 'lines',
+		linesClass: 'line',
 	})
+
+	gsap.from(split.lines, {
+		y: 50,
+		opacity: 0,
+		duration: 0.8,
+		stagger: 0.4,
+		ease: 'power3.out',
+
+		scrollTrigger: {
+			trigger: textRef.current,
+			start: 'top 80%',
+			toggleActions: 'play reverse play reverse',
+		},
+	})
+
+	return () => {
+		split.revert()
+	}
+})
 
 	return (
 		<AnimatedSection>
 			<section id="about" className={s.about}>
 				<Title title="Обо мне" />
 				<div className={s.content}>
-					<div ref={textRef} className={s.profile}>
+					<div className={s.profile}>
 						<div className={s.profile}>
 							<div className={s.profileImage}></div>
-							<p className={s.text}>
+							<p ref={textRef} className={s.text}>
 								Я фронтенд-разработчик, увлечённый созданием современных и удобных веб-приложений. Работаю с JavaScript,
 								TypeScript, React и постоянно изучаю новые технологии и подходы к разработке. Интерес к IT появился у
 								меня ещё в школьные годы: я самостоятельно разбирался с операционными системами, Linux, сетевыми
@@ -55,8 +58,8 @@ export default function About() {
 							</p>
 						</div>
 					</div>
+					<SkillsPhysics />
 				</div>
-				<SkillsPhysics />
 			</section>
 		</AnimatedSection>
 	)

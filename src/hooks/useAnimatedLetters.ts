@@ -12,7 +12,6 @@ type Props = {
 	anotherColor: string
 	auto: boolean
 	splitType: 'chars' | 'words'
-
 }
 
 export function useAnimatedLetters(ref: RefObject<HTMLElement | null>, props: Props) {
@@ -24,7 +23,7 @@ export function useAnimatedLetters(ref: RefObject<HTMLElement | null>, props: Pr
 				type: 'chars words',
 				charClass: 'char',
 			})
-const items = split[props.splitType]
+			const items = split[props.splitType]
 			// build letters
 			items.forEach((item) => {
 				const letter = item.textContent || ''
@@ -120,20 +119,18 @@ const items = split[props.splitType]
 				item.dataset.active = String(!active)
 			}
 
+			const interval = setInterval(() => {
+				if (!props.auto) return
+				const chars = split.chars.filter((item) => item.textContent?.trim())
 
-				const interval = setInterval(() => {
-					if(!props.auto) return
-					const chars = split.chars.filter((item) => item.textContent?.trim())
-	
-					const shuffled = [...chars].sort(() => Math.random() - 0.5)
-	
-					const count = Math.random() > 0.5 ? 2 : 1
-	
-					shuffled.slice(0, count).forEach((char) => {
-						toggleChar(char as HTMLElement)
-					})
-				}, 800)
+				const shuffled = [...chars].sort(() => Math.random() - 0.5)
 
+				const count = Math.random() > 0.5 ? 2 : 1
+
+				shuffled.slice(0, count).forEach((char) => {
+					toggleChar(char as HTMLElement)
+				})
+			}, 800)
 
 			return () => {
 				clearInterval(interval)
