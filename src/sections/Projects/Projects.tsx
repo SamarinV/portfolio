@@ -3,6 +3,7 @@ import friendlily from '../../assets/projects/friendlily.webp'
 import landscapeDesign from '../../assets/projects/landscapeDesign.webp'
 import spaceGame from '../../assets/projects/spaceGame.webp'
 import taskBloom from '../../assets/projects/taskBloom.webp'
+import hotelDivnomorsk from '../../assets/projects/hotelDivnomorsk.png'
 import AnimatedSection from '../../components/AnimatedSection/AnimatedSection'
 import Title from '../../components/Title/Title'
 import { useRef } from 'react'
@@ -17,6 +18,14 @@ import s from './Projects.module.scss'
 const projects = [
 	{
 		id: 1,
+		title: 'Гостиница Надежда',
+		description: 'Сайт гостиницы, с админкой, для бронирования номеров',
+		image: hotelDivnomorsk,
+		link: 'https://hotel-divnomorsk.vercel.app/',
+		github: 'https://github.com/SamarinV',
+	},
+	{
+		id: 2,
 		title: 'Film Finder',
 		description: 'Приложение для поиска фильмов, с базой данных от TMDB',
 		image: filmFinder,
@@ -24,7 +33,7 @@ const projects = [
 		github: 'https://github.com/SamarinV/FilmFinder',
 	},
 	{
-		id: 2,
+		id: 3,
 		title: 'Friendlily',
 		description: 'Социальная сеть, для общения с друзьями',
 		image: friendlily,
@@ -32,7 +41,7 @@ const projects = [
 		github: 'https://github.com/SamarinV/friendlily',
 	},
 	{
-		id: 3,
+		id: 4,
 		title: 'Landscape Design',
 		description: 'Сайт ландшафтного дизайна, для заказа ландшафта',
 		image: landscapeDesign,
@@ -40,7 +49,7 @@ const projects = [
 		github: 'https://github.com/SamarinV/landscapeDesign',
 	},
 	{
-		id: 4,
+		id: 5,
 		title: 'Space game',
 		description: 'Мини коссмическя игра, для развлечения',
 		image: spaceGame,
@@ -48,7 +57,7 @@ const projects = [
 		github: 'https://github.com/SamarinV/space-game',
 	},
 	{
-		id: 5,
+		id: 6,
 		title: 'Task Bloom',
 		description: 'Менеджер задач, для управления задачами',
 		image: taskBloom,
