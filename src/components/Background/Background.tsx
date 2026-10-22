@@ -8,6 +8,7 @@ export default function Background() {
 	useEffect(() => {
 		const container = containerRef.current
 		if (!container) return
+		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
 		const dots: HTMLDivElement[] = []
 
@@ -52,7 +53,10 @@ export default function Background() {
 		}
 
 		return () => {
-			dots.forEach((dot) => dot.remove())
+			dots.forEach((dot) => {
+				gsap.killTweensOf(dot)
+				dot.remove()
+			})
 		}
 	}, [])
 

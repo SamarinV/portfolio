@@ -7,19 +7,20 @@ import s from './Footer.module.scss'
 const Footer = () => {
 	return (
 		<footer className={s.footer}>
-			<a href={`#hero`} className={s.toHero}>
+			<a href={`#hero`} className={s.toHero} aria-label="Вернуться наверх">
 				<ToTopIcon className={s.toTopIcon} />
 			</a>
 			<div className={s.btns}>
-				<a href="https://github.com/SamarinV" target="_blank" rel="noopener noreferrer" className={s.btn}>
+				<a href="https://github.com/SamarinV" target="_blank" rel="noopener noreferrer" className={s.btn} aria-label="GitHub">
 					<GitHubIcon className={s.icon} />
 				</a>
 
-				<a href="https://t.me/vova_samar" target="_blank" rel="noopener noreferrer" className={s.btn}>
+				<a href="https://t.me/vova_samar" target="_blank" rel="noopener noreferrer" className={s.btn} aria-label="Telegram">
 					<TelegramIcon className={s.icon} />
 				</a>
 				<a
 					href="https://vk.com/samarinva"
+					aria-label="ВКонтакте"
 					target="_blank"
 					rel="noopener noreferrer"
 					className={s.btn}

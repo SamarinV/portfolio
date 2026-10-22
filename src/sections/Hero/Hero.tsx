@@ -35,14 +35,20 @@ openToWork: true`,
 	return (
 		<section className={s.hero} id="hero">
 			<div className={s.content}>
+				<p className={s.intro}>Владимир Самарин <span>Открыт к предложениям</span></p>
 				<h1 ref={textRef} className={s.title}>
 					Frontend Developer
 				</h1>
+				<p className={s.description}>Создаю удобные веб-интерфейсы на React и TypeScript.</p>
+				<div className={s.actions}>
+					<a href="#projects" className="button buttonPrimary">Посмотреть проекты <span aria-hidden="true">↗</span></a>
+					<a href="#contacts" className="button buttonSecondary">Связаться со мной</a>
+				</div>
 
 				<div className={s.monitorWrapper}>
 					<div className={s.monitor}>
 						<div className={s.screen}>
-							<pre className={s.code}>
+							<pre className={s.code} aria-hidden="true">
 								{typedText}
 								<span className={s.cursor}>|</span>
 							</pre>
@@ -52,7 +58,7 @@ openToWork: true`,
 					</div>
 
 					<div className={s.photoWrapper}>
-						<img src={myPhoto} className={s.photo} alt="Vladimir" />
+						<img src={myPhoto} className={s.photo} alt="Владимир Самарин" />
 					</div>
 				</div>
 			</div>

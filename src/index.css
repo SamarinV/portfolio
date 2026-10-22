@@ -70,3 +70,17 @@ section {
 		padding: 60px 0;
 	}
 }
+/* Shared controls keep navigation and project actions readable at every size. */
+.button { display: inline-flex; justify-content: center; align-items: center; gap: 12px; min-height: 46px; padding: 13px 20px; border: 1px solid transparent; border-radius: 9px; font-size: .9rem; font-weight: 600; line-height: 1.4; text-align: center; transition: background .2s, border-color .2s, transform .2s; }
+.button:hover { transform: translateY(-2px); }
+.buttonPrimary { background: #a855f7; color: #fff; }
+.buttonPrimary:hover { background: #9333ea; }
+.buttonSecondary { background: #ffffff05; border-color: #ffffff2b; color: #e4e4ed; }
+.buttonSecondary:hover { background: #ffffff0d; border-color: #c084fc; }
+a:focus-visible, button:focus-visible { outline: 2px solid #c084fc; outline-offset: 5px; }
+section { scroll-margin-top: 72px; position: relative; }
+main { position: relative; }
+@media (prefers-reduced-motion: reduce) {
+ html { scroll-behavior: auto; }
+ *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

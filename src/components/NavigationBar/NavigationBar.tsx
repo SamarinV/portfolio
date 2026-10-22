@@ -4,7 +4,7 @@ import s from './NavigationBar.module.scss'
 const sections = ['hero', 'about', 'projects', 'contacts']
 
 export default function NavigationBar() {
-	const [activeSection, setActiveSection] = useState('home')
+	const [activeSection, setActiveSection] = useState('hero')
 
 	useEffect(() => {
 		const observer = new IntersectionObserver(
@@ -35,6 +35,7 @@ export default function NavigationBar() {
 					<li className={s.navItem} key={section}>
 						<a
 							href={`#${section}`}
+							aria-current={activeSection === section ? 'location' : undefined}
 							className={`${s.link} ${activeSection === section ? s.active : ''}`}
 						>
 							{

@@ -18,5 +18,5 @@ export function useTypewriter(text: string, speed = 80) {
 		return () => clearInterval(interval)
 	}, [text, speed])
 
-	return value
+	return typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches ? text : value
 }

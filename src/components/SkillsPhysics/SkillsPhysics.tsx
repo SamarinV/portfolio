@@ -1,5 +1,5 @@
 import Matter from 'matter-js'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import CSSIcon from '../../assets/scills/css.svg?react'
 import FigmaIcon from '../../assets/scills/figma.svg?react'
@@ -33,19 +33,31 @@ export default function SkillsPhysics() {
 	const containerRef = useRef<HTMLDivElement>(null)
 	const jsRef = useRef<HTMLDivElement>(null)
 	const bubbleRefs = useRef<(HTMLDivElement | null)[]>([])
+	const [containerWidth, setContainerWidth] = useState(0)
 
 	useEffect(() => {
-		if (!containerRef.current) return
+		const container = containerRef.current
+		if (!container) return
+		const observer = new ResizeObserver(([entry]) => {
+			setContainerWidth(Math.round(entry.contentRect.width))
+		})
+		observer.observe(container)
+		return () => observer.disconnect()
+	}, [])
+
+	useEffect(() => {
+		if (!containerRef.current || !containerWidth) return
 
 		const container = containerRef.current
-		const width = container.offsetWidth
+		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+		const width = containerWidth
 		const height = 500
 
 		// ======================
 		// RESPONSIVE SCALE
 		// ======================
-		const isMobile = window.innerWidth < 768
-		const scale = isMobile ? 0.7 : 1
+		const isMobile = width < 480
+		const scale = Math.min(1, width / 520)
 
 		// ======================
 		// ENGINE
@@ -111,7 +123,8 @@ export default function SkillsPhysics() {
 		// RUNNER
 		// ======================
 		const runner = Matter.Runner.create()
-		Matter.Runner.run(runner, engine)
+		let frameId = 0
+		let running = false
 
 		// ======================
 		// MOUSE
@@ -128,15 +141,13 @@ export default function SkillsPhysics() {
 		container.addEventListener('pointermove', updateMouse)
 		container.addEventListener('pointerdown', updateMouse)
 
-		container.addEventListener('pointerup', () => {
+		const resetMouse = () => {
 			mouseX = -9999
 			mouseY = -9999
-		})
-
-		container.addEventListener('pointercancel', () => {
-			mouseX = -9999
-			mouseY = -9999
-		})
+		}
+		container.addEventListener('pointerup', resetMouse)
+		container.addEventListener('pointercancel', resetMouse)
+		container.addEventListener('pointerleave', resetMouse)
 		// ======================
 		// LOOP
 		// ======================
@@ -231,16 +242,42 @@ export default function SkillsPhysics() {
 				jsRef.current.style.transform = `translate(${jsBubble.position.x - JS_RADIUS}px, ${jsBubble.position.y - JS_RADIUS}px)`
 			}
 
-			requestAnimationFrame(update)
+			frameId = requestAnimationFrame(update)
 		}
 
-		update()
+		let inView = false
+		const syncAnimation = () => {
+			const shouldRun = inView && !document.hidden
+			if (shouldRun === running) return
+			running = shouldRun
+			if (running) {
+				Matter.Runner.run(runner, engine)
+				update()
+			} else {
+				Matter.Runner.stop(runner)
+				cancelAnimationFrame(frameId)
+			}
+		}
+		const observer = new IntersectionObserver(([entry]) => {
+			inView = entry.isIntersecting
+			syncAnimation()
+		})
+		observer.observe(container)
+		document.addEventListener('visibilitychange', syncAnimation)
 
 		return () => {
+			observer.disconnect()
+			document.removeEventListener('visibilitychange', syncAnimation)
+			cancelAnimationFrame(frameId)
+			container.removeEventListener('pointermove', updateMouse)
+			container.removeEventListener('pointerdown', updateMouse)
+			container.removeEventListener('pointerup', resetMouse)
+			container.removeEventListener('pointercancel', resetMouse)
+			container.removeEventListener('pointerleave', resetMouse)
 			Matter.Runner.stop(runner)
 			Matter.Engine.clear(engine)
 		}
-	}, [])
+	}, [containerWidth])
 
 	return (
 		<div ref={containerRef} className={s.container}>

@@ -68,3 +68,9 @@
 		font-size: 0.6em;
 	}
 }
+
+@media (prefers-reduced-motion: reduce) {
+ .container { height: auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; padding: 20px 0; }
+ .bubble, .mainBubble { position: relative; transform: none !important; width: 94px; height: 94px; font-size: 10px; gap: 6px; padding: 12px; }
+ .icon { width: 36px; height: 36px; }
+}

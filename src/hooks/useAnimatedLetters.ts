@@ -18,6 +18,8 @@ export function useAnimatedLetters(ref: RefObject<HTMLElement | null>, props: Pr
 	useGSAP(
 		() => {
 			if (!ref.current) return
+			if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+			const timeouts = new Set<number>()
 
 			const split = SplitText.create(ref.current, {
 				type: 'chars words',
@@ -71,6 +73,7 @@ export function useAnimatedLetters(ref: RefObject<HTMLElement | null>, props: Pr
 
 						el.dataset.hovering = 'false'
 					}, 2500)
+					timeouts.add(timeout)
 				})
 
 				el.addEventListener('mouseleave', () => {
@@ -134,6 +137,7 @@ export function useAnimatedLetters(ref: RefObject<HTMLElement | null>, props: Pr
 
 			return () => {
 				clearInterval(interval)
+				timeouts.forEach(clearTimeout)
 				split.revert()
 			}
 		},

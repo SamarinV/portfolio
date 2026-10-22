@@ -6,12 +6,6 @@ import taskBloom from '../../assets/projects/taskBloom.webp'
 import hotelDivnomorsk from '../../assets/projects/hotelDivnomorsk.png'
 import AnimatedSection from '../../components/AnimatedSection/AnimatedSection'
 import Title from '../../components/Title/Title'
-import { useRef } from 'react'
-import { useGSAP } from '@gsap/react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
 
 import s from './Projects.module.scss'
 
@@ -19,15 +13,15 @@ const projects = [
 	{
 		id: 1,
 		title: 'Гостиница Надежда',
-		description: 'Сайт гостиницы, с админкой, для бронирования номеров',
+		description: 'Сайт гостиницы с бронированием номеров и панелью администратора.',
 		image: hotelDivnomorsk,
 		link: 'https://hotel-divnomorsk.vercel.app/',
-		github: 'https://github.com/SamarinV',
+		github: null,
 	},
 	{
 		id: 2,
 		title: 'Film Finder',
-		description: 'Приложение для поиска фильмов, с базой данных от TMDB',
+		description: 'Поиск фильмов с использованием базы TMDB.',
 		image: filmFinder,
 		link: 'https://film-finder-app.vercel.app/',
 		github: 'https://github.com/SamarinV/FilmFinder',
@@ -35,7 +29,7 @@ const projects = [
 	{
 		id: 3,
 		title: 'Friendlily',
-		description: 'Социальная сеть, для общения с друзьями',
+		description: 'Социальная сеть для общения с друзьями.',
 		image: friendlily,
 		link: 'https://samarinv.github.io/friendlily',
 		github: 'https://github.com/SamarinV/friendlily',
@@ -43,7 +37,7 @@ const projects = [
 	{
 		id: 4,
 		title: 'Landscape Design',
-		description: 'Сайт ландшафтного дизайна, для заказа ландшафта',
+		description: 'Сайт студии ландшафтного дизайна с презентацией услуг.',
 		image: landscapeDesign,
 		link: 'https://landscape-design-kappa.vercel.app/',
 		github: 'https://github.com/SamarinV/landscapeDesign',
@@ -51,7 +45,7 @@ const projects = [
 	{
 		id: 5,
 		title: 'Space game',
-		description: 'Мини коссмическя игра, для развлечения',
+		description: 'Космическая мини-игра в браузере.',
 		image: spaceGame,
 		link: 'https://space-game-999.vercel.app/',
 		github: 'https://github.com/SamarinV/space-game',
@@ -59,98 +53,38 @@ const projects = [
 	{
 		id: 6,
 		title: 'Task Bloom',
-		description: 'Менеджер задач, для управления задачами',
+		description: 'Менеджер задач для организации повседневных дел.',
 		image: taskBloom,
 		link: 'https://samarinv.github.io/TaskBloom/#/',
 		github: 'https://github.com/SamarinV/TaskBloom',
 	},
 ]
 
-const Projects = () => {
-	const listRef = useRef<HTMLDivElement>(null)
-	useGSAP(() => {
-		if (!listRef.current) return
-
-		const projects = gsap.utils.toArray<HTMLElement>(listRef.current.querySelectorAll(`.${s.project}`))
-
-		projects.forEach((project) => {
-			const image = project.querySelector(`.${s.imageWrapper}`)
-			const content = project.querySelector(`.${s.content}`)
-
-			if (!image || !content) return
-
-			const reversed = project.classList.contains(s.reverse)
-
-			gsap.fromTo(
-				image,
-				{
-					x: reversed ? 240 : -240,
-					opacity: 0,
-				},
-				{
-					x: 0,
-					opacity: 1,
-					duration: 0.8,
-					ease: 'linear',
-					clearProps: 'transform',
-					scrollTrigger: {
-						trigger: project,
-						start: 'top 80%',
-						toggleActions: 'play reverse play reverse',
-					},
-				},
-			)
-
-			gsap.fromTo(
-				content,
-				{
-					x: reversed ? -200 : 200,
-					opacity: 0,
-				},
-				{
-					x: 0,
-					opacity: 1,
-					duration: 0.8,
-					ease: 'linear',
-					clearProps: 'transform',
-					scrollTrigger: {
-						trigger: project,
-						start: 'top 80%',
-						toggleActions: 'play reverse play reverse',
-					},
-				},
-			)
-		})
-	}, [])
-	return (
-		<AnimatedSection>
-			<section className={s.projects} id="projects">
-				<Title title="Проекты" />
-				<div ref={listRef} className={s.list}>
-					{projects.map((project, index) => (
-						<div key={project.id} className={`${s.project} ${index % 2 ? s.reverse : ''}`}>
-							<a href={project.link} target="_blank">
-								<div className={s.imageWrapper}>
-									<img src={project.image} className={s.image} alt={project.title} />
-								</div>
-							</a>
-
-							<div className={s.content}>
-								<h3 className={s.title}>{project.title}</h3>
-								<p className={s.description}>{project.description}</p>
-								<a href={project.link} target="_blank" className={s.link}>
-									Посмотреть
-								</a>
-								<a href={project.github} target="_blank" className={s.link}>
-									Открыть GitHub
-								</a>
+const Projects = () => (
+	<section className={s.projects} id="projects">
+		<Title title="Проекты" />
+		<p className={s.intro}>От сайтов для бизнеса до приложений и игр — мои работы в веб-разработке.</p>
+		<div className={s.list}>
+			{projects.map((project, index) => (
+				<AnimatedSection key={project.id}>
+					<article className={`${s.project} ${index % 2 ? s.reverse : ''}`}>
+						<a href={project.link} target="_blank" rel="noopener noreferrer" className={s.imageWrapper} aria-label={`Открыть проект «${project.title}»`}>
+							<img src={project.image} className={s.image} alt={`Скриншот проекта «${project.title}»`} loading="lazy" decoding="async" />
+						</a>
+						<div className={s.content}>
+							<span className={s.number}>ПРОЕКТ {String(index + 1).padStart(2, '0')}</span>
+							<h3 className={s.title}>{project.title}</h3>
+							<p className={s.description}>{project.description}</p>
+							<div className={s.actions}>
+								<a href={project.link} target="_blank" rel="noopener noreferrer" className="button buttonPrimary">Посмотреть <span aria-hidden="true">↗</span></a>
+								{project.github && <a href={project.github} target="_blank" rel="noopener noreferrer" className="button buttonSecondary">GitHub <span aria-hidden="true">↗</span></a>}
 							</div>
 						</div>
-					))}
-				</div>
-			</section>
-		</AnimatedSection>
-	)
-}
+					</article>
+				</AnimatedSection>
+			))}
+		</div>
+	</section>
+)
 
 export default Projects

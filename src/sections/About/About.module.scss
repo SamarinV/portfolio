@@ -1,108 +1,50 @@
 .about {
-	min-height: 100vh;
-	width: 1300px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 60px;
-	margin: 0 auto;
+	width: min(1200px, calc(100% - 40px));
+	gap: 48px;
 }
+
 .content {
+	width: 100%;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	gap: 12em;
-	overflow: hidden;
+	gap: 48px;
+	align-items: center;
 }
+
+.content > * {
+	min-width: 0;
+}
+
 .profile {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	gap: 22px;
 }
-.profileImage {
-	background: linear-gradient(45deg, #ff4d5a, #4da6ff);
-	-webkit-mask: url('../../assets/profile.svg') no-repeat center;
-	mask: url('../../assets/profile.svg') no-repeat center;
-	width: 160px;
-	height: 200px;
-}
-.text {
-	font-size: 1.2em;
-	line-height: 1.6;
-	color: var(--text-color);
-}
-.skills {
-	font-size: 0.8em;
-	font-weight: bold;
-	color: var(--text-color);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 20px;
-}
-.col {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 20px;
-}
-.skillItem {
-	width: 100%;
-	position: relative;
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-	gap: 12px;
-	padding: 12px;
-	border-radius: 12px;
-	background: var(--bg-color);
-	z-index: 1;
-	&::before {
-		content: '';
-		position: absolute;
-		inset: 0;
-		padding: 2px;
-		border-radius: inherit;
-		background: linear-gradient(45deg, #ff4d5a, #4da6ff);
-		-webkit-mask:
-			linear-gradient(#000 0 0) content-box,
-			linear-gradient(#000 0 0);
-		-webkit-mask-composite: xor;
-		mask-composite: exclude;
 
-		z-index: -1;
-	}
+.eyebrow {
+	color: #c084fc;
+	font-size: .85rem;
+	font-weight: 600;
+	line-height: 1.7;
 }
-.icon {
-	width: 40px;
-	height: 40px;
+
+.text {
+	font-size: 1.1rem;
+	line-height: 1.85;
+	color: #c5c5cf;
 }
-@media (max-width: 1500px) {
-	.content {
-		gap: 6em;
-	}
+
+.link {
+	color: #fff;
+	font-weight: 600;
+	width: fit-content;
+	padding: 12px 0;
+	border-bottom: 1px solid #a855f7;
 }
-@media (max-width: 1300px) {
-	.about {
-		width: 100%;
-	}
+
+@media (max-width: 900px) {
 	.content {
 		grid-template-columns: 1fr;
-	}
-	.text {
-		width: 100%;
-		max-width: 500px;
-	}
-	.skills {
-		width: 500px;
-	}
-}
-
-@media (max-width: 768px) {
-	.about {
-		padding: 60px 20px;
-	}
-	.skills {
-		width: 100%;
+		gap: 24px;
 	}
 }
