@@ -1,0 +1,72 @@
+name: SpaceWeb deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: 'Опубликовать сайт (выключено — только проверка подключения)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: spaceweb-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_USER: ${{ secrets.SSH_USER }}
+      DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+
+      - name: Configure SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+        run: |
+          set -euo pipefail
+          test -n "$SSH_HOST"
+          test -n "$SSH_USER"
+          test -n "$SSH_PRIVATE_KEY"
+          test -n "$SSH_KNOWN_HOSTS"
+          test "$DEPLOY_PATH" = /home/v/vasamariny/_samarin-dev/public_html
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          printf '%s\n' "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/id_ed25519 ~/.ssh/known_hosts
+          printf '%s\n' 'Host *' '  BatchMode yes' '  IdentitiesOnly yes' '  StrictHostKeyChecking yes' '  ConnectTimeout 20' > ~/.ssh/config
+
+      - name: Check connection and site directory
+        run: ssh "$SSH_USER@$SSH_HOST" 'test -d /home/v/vasamariny/_samarin-dev/public_html && printf "SSH connection OK\n"'
+
+      - name: Check that WordPress has been removed from the public directory
+        if: inputs.publish
+        run: |
+          ssh "$SSH_USER@$SSH_HOST" 'if test -f /home/v/vasamariny/_samarin-dev/public_html/index.php || test -f /home/v/vasamariny/_samarin-dev/public_html/.htaccess; then echo "Move the old WordPress files, including .htaccess, out of public_html before publishing."; exit 1; fi'
+
+      - name: Upload assets and publish index last
+        if: inputs.publish
+        run: |
+          set -euo pipefail
+          tar --exclude='./index.html' -czf "$RUNNER_TEMP/site.tar.gz" -C dist .
+          ssh "$SSH_USER@$SSH_HOST" 'tar -xzf - -C /home/v/vasamariny/_samarin-dev/public_html' < "$RUNNER_TEMP/site.tar.gz"
+          scp dist/index.html "$SSH_USER@$SSH_HOST:$DEPLOY_PATH/index.html"
