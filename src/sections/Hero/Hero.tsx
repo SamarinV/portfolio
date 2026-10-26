@@ -2,7 +2,7 @@ import gsap from 'gsap'
 import { SplitText } from 'gsap/SplitText'
 import { useRef } from 'react'
 
-import myPhoto from '../../assets/me.webp'
+import myPhoto from '../../assets/me-studio.webp'
 import { useAnimatedLetters } from '../../hooks/useAnimatedLetters'
 import { useTypewriter } from '../../hooks/useTypewriter'
 import s from './Hero.module.scss'

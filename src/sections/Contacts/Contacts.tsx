@@ -8,9 +8,10 @@ export default function Contacts() {
 			<div className={s.card}>
 				<p className={s.status}><span aria-hidden="true" />Открыт к предложениям</p>
 				<h3>Давайте создадим что-нибудь полезное</h3>
-				<p className={s.description}>Если вы ищете фронтенд-разработчика или хотите обсудить проект — напишите мне в Telegram.</p>
+				<p className={s.description}>Если вы ищете фронтенд-разработчика или хотите обсудить проект — напишите мне в Telegram или MAX.</p>
 				<div className={s.actions}>
 					<a className="button buttonPrimary" href="https://t.me/vova_samar" target="_blank" rel="noopener noreferrer">Написать в Telegram <span aria-hidden="true">↗</span></a>
+					<a className="button buttonPrimary" href="https://max.ru/u/f9LHodD0cOIfGjjpc6zzuj2EIxV0veKFf173N9mh33QYF6xERn1Tim0UnQA" target="_blank" rel="noopener noreferrer">Написать в MAX <span aria-hidden="true">↗</span></a>
 					<a className="button buttonSecondary" href="https://github.com/SamarinV" target="_blank" rel="noopener noreferrer">Мой GitHub</a>
 				</div>
 			</div>
