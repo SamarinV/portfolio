@@ -51,7 +51,7 @@ export default function SkillsPhysics() {
 		const container = containerRef.current
 		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 		const width = containerWidth
-		const height = 500
+		const height = container.clientHeight
 
 		// ======================
 		// RESPONSIVE SCALE

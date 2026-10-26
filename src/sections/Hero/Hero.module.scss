@@ -209,9 +209,16 @@
 	}
 }
 
+@media (max-width: 768px) {
+	.hero {
+		min-height: 0;
+		padding-bottom: 32px;
+	}
+}
+
 @media (max-width: 600px) {
 	.hero {
-		padding: 44px 20px 64px;
+		padding: 44px 20px 32px;
 	}
 	.content {
 		gap: 20px;

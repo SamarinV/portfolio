@@ -64,6 +64,9 @@
 }
 
 @media (max-width: 768px){
+	.container {
+		height: clamp(320px, 88vw, 480px);
+	}
 	.bubble {
 		font-size: 0.6em;
 	}
