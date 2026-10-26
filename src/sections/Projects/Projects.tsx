@@ -1,9 +1,7 @@
 import filmFinder from '../../assets/projects/filmFinder.webp'
-import friendlily from '../../assets/projects/friendlily.webp'
+import hotelDivnomorsk from '../../assets/projects/hotelDivnomorsk.webp'
 import landscapeDesign from '../../assets/projects/landscapeDesign.webp'
 import spaceGame from '../../assets/projects/spaceGame.webp'
-import taskBloom from '../../assets/projects/taskBloom.webp'
-import hotelDivnomorsk from '../../assets/projects/hotelDivnomorsk.png'
 import AnimatedSection from '../../components/AnimatedSection/AnimatedSection'
 import Title from '../../components/Title/Title'
 
@@ -28,14 +26,6 @@ const projects = [
 	},
 	{
 		id: 3,
-		title: 'Friendlily',
-		description: 'Социальная сеть для общения с друзьями.',
-		image: friendlily,
-		link: 'https://samarinv.github.io/friendlily',
-		github: 'https://github.com/SamarinV/friendlily',
-	},
-	{
-		id: 4,
 		title: 'Landscape Design',
 		description: 'Сайт студии ландшафтного дизайна с презентацией услуг.',
 		image: landscapeDesign,
@@ -43,20 +33,12 @@ const projects = [
 		github: 'https://github.com/SamarinV/landscapeDesign',
 	},
 	{
-		id: 5,
+		id: 4,
 		title: 'Space game',
 		description: 'Космическая мини-игра в браузере.',
 		image: spaceGame,
 		link: 'https://space-game-999.vercel.app/',
 		github: 'https://github.com/SamarinV/space-game',
-	},
-	{
-		id: 6,
-		title: 'Task Bloom',
-		description: 'Менеджер задач для организации повседневных дел.',
-		image: taskBloom,
-		link: 'https://samarinv.github.io/TaskBloom/#/',
-		github: 'https://github.com/SamarinV/TaskBloom',
 	},
 ]
 
