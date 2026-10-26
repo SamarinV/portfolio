@@ -1,73 +1,174 @@
-# React + TypeScript + Vite
+# Владимир Самарин — Frontend Developer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Персональное портфолио с проектами, навыками и контактами. Одностраничный сайт на React и TypeScript с адаптивной вёрсткой, анимированными заголовками и интерактивным блоком технологий.
 
-Currently, two official plugins are available:
+**Сайт:** [samarin-dev.ru](https://samarin-dev.ru)
+**Репозиторий:** [SamarinV/portfolio](https://github.com/SamarinV/portfolio)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Возможности
 
-## React Compiler
+- Первый экран с кратким представлением, фотографией и переходами к проектам и контактам.
+- Блок «Обо мне» и интерактивные иконки навыков с физикой на Matter.js.
+- Карточки проектов со скриншотами, ссылками на демо и доступные репозитории.
+- Подсказки о возможной необходимости VPN для просмотра проектов на Vercel.
+- Контакты с переходами в Telegram и GitHub.
+- Адаптация для телефонов и больших экранов, поддержка уменьшенного движения.
+- Счётчик Яндекс Метрики для анализа посещений.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+В портфолио представлены сайт гостиницы «Надежда», Film Finder, Landscape Design и Space game.
 
-## Expanding the ESLint configuration
+## Технологии
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+React 19, TypeScript, Vite, SCSS Modules, GSAP, Framer Motion, Matter.js и ESLint.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Сайт публикуется как статическая сборка: отдельная серверная часть и Node.js на хостинге для его работы не нужны.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Локальный запуск
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Используй Node.js 24 и npm — эта же версия Node.js указана в GitHub Actions.
+
+```bash
+npm ci
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Адрес локального сервера появится в терминале; обычно это `http://localhost:5173/`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+| Команда | Назначение |
+| --- | --- |
+| `npm run dev` | Запуск сервера разработки |
+| `npm run lint` | Проверка ESLint |
+| `npm run build` | Проверка TypeScript и создание сборки в `dist/` |
+| `npm run preview` | Локальный просмотр готовой сборки, обычно на порту 4173 |
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+`npm run preview` используется для локальной проверки, а не для размещения сайта на хостинге.
+
+## Структура проекта
+
+```text
+public/                  Статические файлы, включая favicon
+src/assets/              Скриншоты, фотография и иконки
+src/components/          Переиспользуемые компоненты
+src/hooks/               Хуки анимации
+src/sections/            Главный экран, информация, проекты, контакты и футер
+src/styles/              Общие SCSS-переменные
+src/App.tsx              Сборка страницы из секций
+index.html               HTML-шаблон, метаданные и Яндекс Метрика
+.github/workflows/       Сценарий публикации на SpaceWeb
 ```
+
+## Как обновить сайт на SpaceWeb
+
+Сайт размещён на SpaceWeb, домен — `samarin-dev.ru`. Публикация настроена через [GitHub Actions](https://github.com/SamarinV/portfolio/actions/workflows/deploy.yml).
+
+**Сейчас деплой запускается вручную. Обычный `git push` сам по себе сайт на SpaceWeb не обновляет.** Файл сценария уже лежит в репозитории; заново отправлять или создавать Action при каждом обновлении не нужно.
+
+### 1. Внести изменения и проверить их
+
+В локальном терминале, из папки проекта:
+
+```bash
+npm run lint
+npm run build
+```
+
+При необходимости выполни `npm run preview` и проверь результат в браузере.
+
+### 2. Отправить изменения на GitHub
+
+Проверь текущую ветку и список изменений:
+
+```bash
+git branch --show-current
+git status
+```
+
+Деплой настроен для ветки `main`. Добавь нужные файлы в коммит через редактор или `git add`, указав их пути. Например, если менялся только README:
+
+```bash
+git add README.md
+```
+
+Для нескольких файлов укажи их пути через пробел. Затем проверь подготовленные изменения и отправь их:
+
+```bash
+git diff --cached
+git commit -m "Update portfolio"
+git push origin main
+```
+
+Не добавляй в репозиторий приватные SSH-ключи, пароли и другие секреты. Папки `node_modules/` и `dist/` загружать на GitHub не нужно — они исключены через `.gitignore`.
+
+### 3. Включить SSH на SpaceWeb
+
+В панели SpaceWeb открой **«Инструменты → SSH»** и включи SSH-доступ.
+
+В используемом режиме доступ включается на 24 часа. Если срок истёк, перед публикацией включи его снова. Отключение SSH не останавливает опубликованный сайт — оно мешает только подключению для обновления файлов.
+
+### 4. Запустить публикацию
+
+1. Открой репозиторий на GitHub и вкладку **Actions**.
+2. Слева выбери **SpaceWeb deploy**.
+3. Над списком запусков нажми **Run workflow**.
+4. Выбери ветку **main**.
+5. Включи галочку **«Опубликовать сайт»**.
+6. Нажми кнопку **Run workflow** и дождись завершения.
+
+Без галочки workflow выполнит проверки, сборку и проверку SSH, но не загрузит сайт.
+
+**Re-run jobs / Re-run all jobs** повторяет старый запуск с прежними параметрами и коммитом. Чтобы опубликовать свежие изменения или изменить галочку публикации, создай новый запуск через **Run workflow**.
+
+### 5. Проверить результат
+
+Открой запуск и задание `deploy`. Успешное выполнение отмечается зелёной галочкой.
+
+После этого открой [samarin-dev.ru](https://samarin-dev.ru), проверь изображения, проекты и контакты. Если видна старая версия, обнови страницу с очисткой кеша или открой приватное окно. Favicon браузер может кешировать отдельно.
+
+При обычных обновлениях повторно настраивать ключи, Secrets или переносить WordPress не требуется.
+
+## Как работает публикация
+
+Сценарий находится в [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
+
+1. Получает код выбранного коммита из `main`.
+2. Устанавливает зависимости командой `npm ci`.
+3. Запускает ESLint, TypeScript и сборку Vite.
+4. Подключается к SpaceWeb по SSH с проверкой сохранённого ключа сервера.
+5. При включённой публикации проверяет отсутствие `index.php` и `.htaccess` от старого WordPress.
+6. Загружает файлы сборки в `/home/v/vasamariny/_samarin-dev/public_html` и передаёт `index.html` последним.
+
+При ошибке проверок или сборки загрузка не начинается. Сценарий не удаляет старые файлы сборок на хостинге и не выполняет автоматический откат. Это загрузка файлов в текущую папку сайта, а не переключение между отдельными релизами.
+
+### Настройки GitHub Secrets
+
+Они уже добавлены в **Settings → Secrets and variables → Actions → Secrets**:
+
+| Название | Назначение |
+| --- | --- |
+| `SSH_HOST` | Адрес сервера для подключения |
+| `SSH_USER` | Пользователь хостинга |
+| `DEPLOY_PATH` | Папка публикации сайта |
+| `SSH_PRIVATE_KEY` | Приватный ключ для деплоя |
+| `SSH_KNOWN_HOSTS` | Сохранённые публичные ключи сервера для проверки подключения |
+
+Значения секретов не хранятся в README или исходниках. При смене папки публикации потребуется согласованно обновить `DEPLOY_PATH` и пути, прописанные в workflow.
+
+## Если публикация не удалась
+
+| Симптом | Что проверить |
+| --- | --- |
+| Ошибка или тайм-аут подключения SSH | Включён ли SSH на SpaceWeb и не истекли ли 24 часа |
+| `Permission denied (publickey)` | Правильность ключа в GitHub Secrets и соответствующего публичного ключа на сервере |
+| `Host key verification failed` | Совпадает ли ключ сервера с `SSH_KNOWN_HOSTS`; перед заменой проверь новый ключ у SpaceWeb |
+| Ошибка ESLint или TypeScript | Красный шаг в Actions; исправь код и отправь новый коммит |
+| Проверки зелёные, но сайт не обновился | Включена ли галочка публикации, выбран ли `main` и отправлен ли нужный коммит |
+| Не видно галочки публикации | Открой список запусков **SpaceWeb deploy → Run workflow**, а не повтор старого запуска |
+| Найден `index.php` или `.htaccess` | Проверь папку публикации: workflow останавливается при наличии этих файлов; не удаляй незнакомые файлы без проверки |
+
+Не отключай проверку ключа SSH-сервера ради обхода ошибки подключения.
+
+## Статистика посещений
+
+В [Яндекс Метрике](https://metrica.yandex.ru/) выбери счётчик **113791803** и открой **«Отчёты → Аудитория → Посещаемость»**. Для просмотра новых посещений выбери период «Сегодня».
+
+Счётчик подключён в `index.html`. Статистика собирается после загрузки кода счётчика на сайт и появляется в отчётах с задержкой. Блокировщики рекламы могут мешать учёту части посещений.
