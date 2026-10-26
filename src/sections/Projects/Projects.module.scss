@@ -63,9 +63,62 @@
 	letter-spacing: .12em;
 }
 
+.hint {
+	position: relative;
+}
+
+.hintButton {
+	display: grid;
+	place-items: center;
+	width: 24px;
+	height: 24px;
+	border: 1px solid #c084fc70;
+	border-radius: 50%;
+	color: #c084fc;
+	font-family: inherit;
+	font-size: .9rem;
+	font-weight: 600;
+}
+
+.tooltip {
+	position: absolute;
+	top: calc(100% + 8px);
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 2;
+	width: min(250px, 65vw);
+	padding: 12px 14px;
+	border: 1px solid #c084fc50;
+	border-radius: 10px;
+	background: #292332;
+	color: #e4e4ed;
+	font-size: .85rem;
+	line-height: 1.6;
+	box-shadow: 0 8px 24px #00000040;
+	visibility: hidden;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.hintOpen .tooltip,
+.hintButton:focus-visible + .tooltip {
+	visibility: visible;
+	opacity: 1;
+}
+
+@media (hover: hover) {
+	.hint:hover .tooltip {
+		visibility: visible;
+		opacity: 1;
+	}
+}
+
 .title {
 	font-size: clamp(1.4rem, 2.5vw, 2rem);
 	line-height: 1.25;
+	display: flex;
+	align-items: center;
+	gap: 12px;
 }
 
 .description {
